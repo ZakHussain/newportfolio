@@ -1,0 +1,40 @@
+.hidden{
+	display: none 
+}
+
+video { 
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    z-index: -100;
+    transform: translateX(-50%) translateY(-50%);
+  	background-size: cover;
+  	transition: 1s opacity;
+}
+
+#card-holder {
+  font-weight:100; 
+  /*background: rgba(0,0,0,0.6);*/
+  /*rgba(193, 106, 106, 0.6);*/
+  color: white;
+  padding: 2rem;
+  font-size: 1.2rem;	
+}
+
+.myCard {
+  font-weight:100; 
+  /*background: rgba(0,0,0,0.6);*/
+  /*rgba(193, 106, 106, 0.6);*/
+  color: white;
+  padding: 2rem;
+  font-size: 1.2rem;
+}
+
+#wrapper, img{
+    border: 2px solid black;
+    width: 100%;
+}

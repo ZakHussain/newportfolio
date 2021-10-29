@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Neuron Morphologies | Saud Zakariya Hussain </title>
+		<!--Import Google Icon Font-->
+      	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+		{% load static %}
+		<!--Import css files-->
+		<link rel="stylesheet" type="text/css" href="{% static 'main_app/css/myStyles.css' %}">
+		<link rel="stylesheet" type="text/css" href="{% static 'main_app/css/materialize.css' %}">
+		<!--Import jQuery before materialize.js and myJquery.js-->	
+		<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+		<script type="text/javascript" src="{% static 'main_app/js/myJquery.js' %}"></script>
+		<script type="text/javascript" src="{% static 'main_app/js/materialize.js' %}"></script>
+	</head>
+	<body>
+		<!-- fixed nav bar at the top -->
+		<div class="navbar-fixed">
+			<nav>
+				<div class="nav-wrapper grey darken-4">
+					<a href="{% url 'index' %}" class="brand-logo flow-text minimum-width center">Saud Zakariya Hussain</a>
+					<ul class="right hide-on-med-and-down">
+						<li><a href="{% url 'index' %}">Home</a></li>
+						<li><a href="{% url 'experience' %}">Experience</a></li>
+						<li><a href="{% url 'projects' %}">Projects</a></li>
+						<li><a href="{% url 'blog' %}">Blog</a></li>
+						<li><a href="https://github.com/ZakHussain">GitHub</a></li>
+					</ul>					
+				</div>
+			</nav>	
+		</div>
+		<!-- Page Starting photo -->
+		<div class="wrapper">
+			<div class="row"> 
+				<div class="s12 center-align">
+					<img src="{% static "main_app/images/MyWebsite_images/cell_array.JPG" %}"/>	
+				</div>	
+			</div>	
+		</div>
+		<!-- CONTENT -->
+		<div class="row">
+			<div class="col s12">
+				<div class="container section">
+					<h3 class="center-align">Classifying Neuronal Morphological Characteristics&mdash;Spiny vs Aspiny&#8212;Using Electrophysiologyical Features from the Allen Cell Types Database</h3>
+					<div class="left-align flow-text">		
+					    <br>
+					    Saud Zakariya Hussain | CS7180 Special Topics in AI | 08/16/2019
+						<br>				
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col s12 green lighten-5">
+				<div class="container section">
+					<h3 class="center-align">Introduction</h3>
+					<div class="left-align flow-text">
+					 	The biological sciences are a prime hotspot for retrieving exorbitant amounts
+						of data—ranging from physiological characteristics of large mammals (e.g.,
+						Whales, humans, etc.), down to nanoscale phenomena that can be measured. 
+						<br>
+						<br>
+						In this paper, I focus on bridging the gap between data acquired from
+						neurobiological experimentation with modern, classification-techniques
+						currently used in data science—a field involved in extracting insight from
+						structured and unstructured data. More specifically, I seek to answer the
+						following question: “Is it feasible to classify whether a neuron has Aspiny or
+						spiny dendrites given information about its firing properties?”
+						<br>
+						<br>
+						To succeed in painting a clear picture of how I conducted my analysis to
+						you, the reader, I will use the following outline:
+						<ol>
+							<li>Define key terminology/background knowledge for understanding the biology. </li>
+							<li>Provide an overview of the data.</li>
+							<li>Provide an overview of the experiment used for data-acquisition.</li>
+							<li>Express the importance of why classifying morphological features of
+								neurons using electrophysiological properties makes this dataset
+								exhilarating to work with. </li>
+							<li>Delve into my exploration of the dataset. </li>
+							<li>Explain my approach to selecting classification models to fit this dataset. </li>
+							<li>Discuss the results of my classification models</li>
+							<li>Conclusion - summarize my data exploration and determine future directions. </li>											
+						</ol>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col s12">
+				<div class="container section">
+					<h3 class="center-align">Background & Key Terms to Understand the Biology</h3>
+					<div class="left-align flow-text">
+						<b>Aspiny vs Spiny Neuron:</b>
+						<br>
+						A neuron itself is a type of cell found within the nervous system of anything
+						capable of locomotion. There are some x-billion of these cells within a
+						human brain, and they form complex circuitries by communicating to each
+						other across a synapse via an axon terminal to dendrite connection; where
+						the axon terminal can be thought of as the tail of an upstream cell, and the
+						dendrite belongs to the head of a downstream cell <b>(Figure 1)</b>.
+						<br>
+						<br>
+						<div class="s12 center-align">
+							<img src="{% static "main_app/images/projects_images/Neuron_morphol_imgs/Fig1.PNG" %}"/>	
+						</div>	
+						<br>
+						<br>
+						One important realization, is that there are different types of neurons with
+						different morphologies (shapes), electrophysiological characteristics, etc. 
+						<br>
+						<br>
+						For my data science exploration, I will be looking at two categories of
+						neurons, spiny and Aspiny. This is a morphological characteristic expressed
+						across most neurons. Specifically, this is a feature found on the dendrites of
+						a neuron. A spiny neuron has projections seen along its dendrites, thus
+						increasing the surface area available to maximize the number of connections
+						possible with other neurons; whereas, an Aspiny does not have these
+						projections <b>(Figure 2)</b>. A neuron can morph between these two categories. 
+						<br>
+						<br>
+						<div class="s12 center-align">
+							<img src="{% static "main_app/images/projects_images/Neuron_morphol_imgs/Fig2.PNG" %}"/>	
+						</div>	
+						<br>
+						<br>
+						<b>Electrophysiology:</b>
+						<br>
+						In the context of this paper, electrophysiological studies involve measuring
+						the response of neurons in a living organism to a given stimulus (e.g.,
+						current injections using a stimulation electrode, exposing the subject video
+						recordings). The data collected from this type of experiment provides insight
+						into both intra- and extracellular activity and generally comes in the form of
+						a voltage recording—the result of changing membrane potential of the cell
+						due to stimulus. 
+						<br>
+						<br>
+						<b>Action Potential: Single Spike vs Spike Train:</b>
+						<br>
+						As mentioned above, the result of changing the membrane potential of a
+						neuron is observed through a voltage measurement between the inside and
+						outside of a cell. A cell at rest has a resting potential that is generally near
+						-70mV. When a stimulus causes the neuron to depolarize (i.e., become more
+						positive), if the difference across the cell membrane reach a threshold value
+						(generally above -45 mV) specific to the neuron, an action potential occurs.
+						This event causes the stimulated cell to release of neurotransmitters across
+						the synaptic cleft towards the dendrite of a downstream neuron. 
+						<br>
+						<br>
+						Neurons, however, are not limited to eliciting a mere single, action
+						protentional. Rather, depending on the duration/type of the stimuli, the
+						neuron may respond with only a single spike <b>(Figure 3)</b>, or a series of
+						spikes—referred to as a spike train <b>(Figure 4)</b>. 
+						<br>
+						<br>
+						<div class="s12 center-align">
+							<img src="{% static "main_app/images/projects_images/Neuron_morphol_imgs/Fig3.PNG" %}"/>	
+						</div>	
+						<br>
+						<br>
+						<div class="s12 center-align">
+							<img src="{% static "main_app/images/projects_images/Neuron_morphol_imgs/Fig4.PNG" %}"/>	
+						</div>	
+						<br>
+						<br>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col s12 purple lighten-5">
+				<div class="container section">
+					<h3 class="center-align">Overview of Data</h3>
+					<div class="left-align flow-text">
+						The data used in my analysis was gathered by the Allen Institute for Brain
+						Science. It is stored in the Allen Cell Types Database, which contains
+						electrophysiological, morphological, and transcriptomic data. 
+						<br>
+						<br>
+						From within this database, I used their software development kit (sdk) and
+						application programming interface (api) to extract the data containing
+						electrophysiological responses from both human and mouse brains. The cells
+						selected came from select brain areas, such the visual subregions in the
+						mouse brain and different layers of the cortex in the human brain. 
+						<br>
+						<br>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col s12">
+				<div class="container section">
+					<h3 class="center-align">Experiment Used in Data Acquisition</h3>
+					<div class="left-align flow-text">
+						Electrophysiological data from single cells was acquired using whole cell
+						patch clamping—a popular procedure used to study ionic currents in an
+						individual cell <b>(Figure 5)</b>. A micropipette is used to contact the membrane
+						of an isolated cell. A small suction is applied creating a seal between the
+						pipette and membrane. Therefore, when an ion channel opens, as a result of
+						depolarizing the cell, ions flow into the pipette and an electronic amplifier is
+						used to record the current flowing through an ion channel. 
+						<br>
+						<br>
+						<div class="s12 center-align">
+							<img src="{% static "main_app/images/projects_images/Neuron_morphol_imgs/Fig5.PNG" %}"/>	
+						</div>	
+						<br>
+						<br>
+						Once an isolated cell within a select area is clamped, a range of stimulus
+						protocols are used to characterize the neuron’s electrophysiological 
+						properties. Each cell undergoes a single experiment composed of a series of
+						different sweeps, where each sweep is used gather the cells response to a
+						specified stimulus—types of stimulus are depicted in <b>Figure 7</b>. For quality
+						data assurance, a set of test sweeps is used during each experiment. This
+						ensures the data across cell experiments are consistent. For example, making
+						contact to a cell membrane and applying suction could damage the
+						membrane, thus causing a shift in the current measured through the
+						micropipette. The chronology of the test sweeps in the experiment is shown
+						in <b>Figure 6</b>.
+						<br>
+						<br>
+						<div class="s12 center-align">
+							<img src="{% static "main_app/images/projects_images/Neuron_morphol_imgs/Fig6.PNG" %}"/>	
+						</div>	
+						<br>
+						<br>
+						<div class="s12 center-align">
+							<img src="{% static "main_app/images/projects_images/Neuron_morphol_imgs/Fig7.PNG" %}"/>	
+						</div>	
+						<br>
+						<br>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col s12 red lighten-5">
+				<div class="container section">
+					<h3 class="center-align">Importance of Creating a Classification Model on This Data Set</h3>
+					<div class="left-align flow-text">
+						As mentioned in the introduction, I am curious to know the feasibility of
+						classifying a neuron based on whether it is Aspiny or spiny dendrites given
+						its electrophysiological properties. But is this a valuable question to explore?
+						The simple answer is absolutely. Based on a discussion held with a fellow
+						peer, who actually took part in the data acquisition process of this dataset,
+						being able to determine the morphological features of a neuron based on its
+						electrical response could greatly reduce the size of the data and the amount
+						of computation required to analyze 2d neuronal images. Not to mention, you
+						could determine the physical attributes without having to image and trace the
+						cell (Neuron tracing is a time-consuming reconstruction technique for
+						mapping the axons and dendrites, as well as other physical features of a
+						neuron). 
+						<br>
+						<br>
+						The dataset itself is very robust. For each cell experiment there are around
+						100 sweeps. Also, for each sweep there are numerous characteristics that can
+						be observed within either the single action potential response <b>(Figure 8)</b>, or
+						spike train response (Figure 8b), depending on stimulus.
+						<br>
+						<br>
+						<div class="s12 center-align">
+							<img src="{% static "main_app/images/projects_images/Neuron_morphol_imgs/Fig8a.PNG" %}"/>	
+						</div>	
+						<br>
+						<br>
+						<div class="s12 center-align">
+							<img src="{% static "main_app/images/projects_images/Neuron_morphol_imgs/Fig8b.PNG" %}"/>	
+						</div>	
+						<b>Note The figure above is actually Figure 8b</b>
+						<br>
+						<br>
+						On top of having single cell data, there are over 50 features available across
+						the ephysiological recordings for each cell experiment, that come from
+						averages across the sweeps. Therefore, in terms of complexity, this dataset
+						provides a large playground to experiment with many principles of data
+						science, such as preprocessing and feature extraction which will ultimately
+						lead to modeling and evaluating classifiers.
+						<br>
+						<br>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col s12">
+				<div class="container section">
+					<h3 class="center-align">Exploring the Dataset</h3>
+					<div class="left-align flow-text">
+						Diving into the Allen Cell Types Database via the sdk and api is a relatively
+						straightforward. The code is documented using sphinx—a python
+						documentation tool; therefore, if you can figure out what you are looking
+						for, you will find it.
+						<br>
+						<br>
+						From the beginning, I decided to reduce any variability in the data by solely
+						focusing on recordings from Mus musculus—the common house mouse
+						<br>
+						<br>
+						In the dataset, there are a total of 1920 instances of mouse cells found. With
+						each cell containing metadata describing features such as the exact 3-
+						dimensional coordinates of the specimen, the transgenic mouse line, dendrite
+						type, cell id, etc.
+						<br>
+						<br>
+						In my first attempt at parsing the data, I used a single specimen’s id value,
+						and collected the ephysiological data from the experiment involving the 
+						specified cell. This came in the form of a NwbDataSet object, which is a
+						class object that contains methods for retrieving stimulus and trace responses
+						across all sweeps. I then observed the cell responses to the different stimuli,
+						as shown in <b>Figure 3</b> and <b>Figure 4</b>. 
+						<br>
+						<br>
+						For a single sweep, the sdk/api has an EphysSweepFeatureExtractor class
+						that provides access to the feature values computed from the cell’s response.
+						These values include the trough, peak voltage, threshold voltage, and around
+						33 other features. 
+						<br>
+						<br>
+						Conveniently, the sdk provides a function to get the recordings for all cells,
+						where the feature values are computed as the average across all sweeps
+						within a cell experiment. I constructed a dataframe from this, and connected
+						a column containing whether the specified cell was spiny or Aspiny. I
+						realized there was also a third category in the data—sparsely spiny, which as
+						the name suggest, is a neuron that has dendrite with projects and without.
+						For the early stages in data exploration, I did not remove the cells that were
+						Aspiny.
+						<br>
+						<br>
+						With a dataframe at hand, I originally thought to try the clustering approach
+						used with the Iris dataset earlier in the semester. Clustering would enable me
+						to distinguish a set of features that could separate out the three classes:
+						spiny, Aspiny, and sparsely spiny. However, because of the number of
+						features, creating a cluster matrix would generate near 2500 different plots.
+						This was not feasible. Instead, I randomly selected a few features and
+						generated multiple cluster matrices as shown below in <b>Figure 9</b>. 
+						<br>
+						<br>
+						<div class="s12 center-align">
+							<img src="{% static "main_app/images/projects_images/Neuron_morphol_imgs/Fig9.PNG" %}"/>	
+						</div>	
+						<br>
+						<br>
+						Following that, I noticed that the fast trough depth and upstroke-downstroke
+						ratio provided the best distinction between the spiny and Aspiny categories,
+						with the sparsely spiny neuron being scattered between the two (Figure 10).
+						This feature distinction matched with an example Jupyter notebook I came
+						across in the Allen Cell Types sdk. With a solid footing on how to work with
+						the dataset, I then turned my focus on how I would train classifiers to
+						predict whether a dendrite type was spiny or Aspiny. 
+						<br>
+						<br>
+						<div class="s12 center-align">
+							<img src="{% static "main_app/images/projects_images/Neuron_morphol_imgs/Fig10.PNG" %}"/>	
+						</div>	
+						<br>
+						<br>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col s12 blue lighten-5">
+				<div class="container section">
+					<h3 class="center-align">My Approach to Selecting Classification Models to Fit This Dataset</h3>
+					<div class="left-align flow-text">
+						Classification algorithms are a form of supervised learning. The main idea is
+						to train a classification model (i.e. generate a target function), that maps each
+						instance of a feature set X to a class label y.
+						<br>
+						<br>
+						In my CS7180 course (Special topics in AI) we discussed two types of
+						classification models—descriptive and predictive modeling. Descriptive
+						modeling serves as a tool to distinguish between objects of different classes
+						by describing the features that make up an instance of a class; whereas,
+						Predictive modeling uses an instance of the features as input to predict the
+						class label.
+						<br>
+						<br>
+						For the scope of this project, I decided to focus on predictive modeling. The
+						largest factor being that, this project must be delivered as a web-service
+						application. Therefore, if a user has a set of feature values from an
+						electrophysiological recording, they would be able to plug in those values,
+						and have my models predict the likelihood of the neuron being spiny or
+						Aspiny. 
+						<br>
+						<br>
+						In choosing models for predictive modeling, I trained a probabilistic
+						predictive classification model (i.e. Logistic Regression), a decision tree, and
+						an ensemble model known as a Random Forest classifier. 
+						<br>
+						<br>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col s12">
+				<div class="container section">
+					<h3 class="center-align">Training & Evaluating Classification Models</h3>
+					<div class="left-align flow-text">
+						<b>Preprocessing:</b>
+						<br>
+						Before training my classifiers I focused on reducing the feature set from 50
+						down to 24. I realized there were columns not indicative of the cell’s
+						electrophysiology traits, for example, the peak time ramp. Column based on
+						the time a stimulus was elicited on a cell. A cells response is not affected by
+						the time a stimulus is used. A full list of the features dropped Is in the
+						finalized Jupyter notebook. 
+						<br>
+						<br>
+						Also, columns missing more than 250 values were removed. Rows with
+						features missing were dropped afterwards as to minimize the total number of
+						instances lost. Lastly, sparsely spiny cells were dropped. As a result, there
+						were a total of 1566 instances left in my dataset. 
+						<br>
+						<br>
+						<b>Training and Evaluating:</b>
+						<br>
+						For Training I split the data 65% training and 35% testing. Also, for each
+						model I used the following evaluation metrics:
+						<br>
+						<br>
+							• Accuracy score – a ratio of the number of correct predictions.
+							<br>
+							• Confusion matrix – a table which describes a classifier’s performance
+							based on true values.
+							<br>
+							• Precision – a ratio equal to the # true positives / (# true positives + #
+							false positives).
+							<br>
+							• Recall – a ratio equal to # true positives / (# true positives + # false
+							negatives).
+							<br>
+							• F1-score – The harmonic mean of precision and recall values.
+							<br>
+							• ROC curve – (receiver operating characteristic) plot of true positive
+							rate against the false positive rate.
+							<br>
+							• AUC – Area under the ROC curve.
+						<br>
+						<br>
+						<b>Logistic Regression:</b>
+						<br>
+						Logistic Regression is a common method in data science for handling binary 
+						classification problems. In the case of my data set, either a cell can be spiny
+						or Aspiny. It will use a feature set to produce a mapping to one of the two
+						classes. Since it is probabilistic, it computes a probability that one of the two
+						classes are likely. Once the logistic regression classifier was fit to the test
+						set, Using the metrics above its evaluation is shown in <b>Figure 11</b> below. 
+						<br>
+						<br>
+						<div class="s12 center-align">
+							<img src="{% static "main_app/images/projects_images/Neuron_morphol_imgs/Fig11.PNG" %}"/>	
+						</div>	
+						<br>
+						<br>
+						We see that in total 533 (296 are spiny and 264 are Aspiny) instances are
+						correctly mapped to their correct label (shown in the top left confusion
+						matrix). From the classification report (top right) 97% of the cells are
+						precisely mapped, and from the ROC and AUC we have a curve close to the
+						top left of the plot, which means the classifier is not purely random. 
+						<br>
+						<br>
+						<b>Decision Tree:</b>
+						<br>
+						A decision tree is another method used in classification modeling. Unlike the
+						Logistic Regression, it is not probabilistic. Rather it is composed of branches
+						that represent a decision rule and a leaf node with represent a potential
+						outcome. It randomly breaks the dataset into subsets until it has exhausted
+						the instances. 
+						<br>
+						<br>
+						From fitting the decision tree classifier to my dataset, the model performed
+						92% accurately on the test set. The resulting evaluation metrics are seen in <b>Figure 12</b>.
+						<br>
+						<br>
+						<div class="s12 center-align">
+							<img src="{% static "main_app/images/projects_images/Neuron_morphol_imgs/Fig12.PNG" %}"/>	
+						</div>	
+						<br>
+						<br>
+						We see that in total 503 (250 are spiny and 253 are Aspiny) instances are
+						correctly mapped to their correct label (shown in the top left confusion
+						matrix). From the classification report (top right) 92% of the cells are
+						precisely mapped, and from the ROC and AUC we have a curve close to the
+						top left of the plot, which means the classifier is not purely random
+						<br>
+						<br>
+						<b>Random Forest:</b>
+						<br>
+						The random Forest classifier received an accuracy score of 96% on the test
+						set. However, prior to performing an evaluation, I was able to compute the
+						feature importance on this model <b>(Figure 13)</b>. This allowed me to reduce the
+						number of features down to the four that had the largest impact on the
+						model’s prediction performance. I kept the features that scored above a 0.08. 
+						<br>
+						<br>
+						<div class="s12 center-align">
+							<img src="{% static "main_app/images/projects_images/Neuron_morphol_imgs/Fig13.PNG" %}"/>	
+						</div>	
+						<br>
+						<br>
+						The updated model had an accuracy of 95%. Since the performance did not
+						drastically decrease and the number of features was decreased down to four
+						(reducing complexity), I decided to stick with the updated model. The
+						evaluation metrics are depicted in <b>Figure 14</b>. 
+						<br>
+						<br>
+						<div class="s12 center-align">
+							<img src="{% static "main_app/images/projects_images/Neuron_morphol_imgs/Fig14.PNG" %}"/>	
+						</div>	
+						<br>
+						<br>
+						We see that in total 524 (263 are spiny and 261 are Aspiny) instances are
+						correctly mapped to their correct label (shown in the top left confusion
+						matrix). From the classification report (top right) 95% of the cells are
+						precisely mapped, and from the ROC and AUC we have a curve close to the
+						top left of the plot, which means the classifier is not purely random
+						<br>
+						<br>	
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col s12 indigo lighten-5">
+				<div class="container section">
+					<h3 class="center-align">Comparison</h3>
+					<div class="left-align flow-text">
+						All three models performed accurately and showed positive results on the
+						evaluation metrics. Each model had a high AUC value, and the fact that each
+						ROC curve was close to the top left is a strong indicator the classifiers did
+						not make purely random predictions. The Logistic regression had the best
+						accuracy, predicting 97% of instances correctly; whereas, the decision tress
+						classifier made the least accurate predictions, 92% accuracy. However, the
+						Random Forest classifier held a 95% accuracy score despite being trained on
+						4 features instead of 23. 
+						<br>
+						<br>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col s12">
+				<div class="container section">
+					<h3 class="center-align">Conclusion</h3>
+					<div class="left-align flow-text">
+						To conclude, building predictive classification models for biological datasets
+						could have the potential to revolutionize the rate of scientific discoveries.
+						The field of neuroscience is a prime target for data science, since it contains
+						large volumes of data that contain noise and unnecessary variables. This
+						paper illustrates that given electrophysiological data, it may be highly
+						possible to correctly predict whether a neuron has Aspiny or spiny dendrites.
+						To further the work done for this project, I hope to delve further into how
+						some of the neuronal electrophysiological features in my model relate; and
+						answer the question of which features are truly dependent vs independent of
+						each other from a biological perspective. 
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</body>
+</html>
+

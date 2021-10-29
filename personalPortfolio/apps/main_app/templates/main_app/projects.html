@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Projects | Saud Zakariya Hussain </title>
+		<!--Import Google Icon Font-->
+      	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+		{% load static %}
+		<!--Import css files-->
+		<link rel="stylesheet" type="text/css" href="{% static 'main_app/css/myStyles.css' %}">
+		<link rel="stylesheet" type="text/css" href="{% static 'main_app/css/materialize.css' %}">
+		<!--Import jQuery before materialize.js and myJquery.js-->	
+		<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+		<script type="text/javascript" src="{% static 'main_app/js/myJquery.js' %}"></script>
+		<script type="text/javascript" src="{% static 'main_app/js/materialize.js' %}"></script>
+	</head>
+	<body>
+
+		<!-- fixed nav bar at the top -->
+		<div class="navbar-fixed">			
+			<nav>
+				<div class="nav-wrapper grey darken-4">
+					<a href="{% url 'index' %}" class="brand-logo flow-text minimum-width center">Saud Zakariya Hussain</a>
+					<ul class="right hide-on-med-and-down">
+						<li><a href="{% url 'index' %}">Home</a></li>
+						<li><a href="{% url 'experience' %}">Experience</a></li>
+						<li><a href="{% url 'projects' %}">Projects</a></li>
+						<li><a href="{% url 'blog' %}">Blog</a></li>
+						<li><a href="https://github.com/ZakHussain">GitHub</a></li>
+					</ul>					
+				</div>
+			</nav>	
+		</div>
+		<!-- Page Starting photo -->
+		<div class="wrapper">
+			<div class="row"> 
+				<div class="s12 center-align">
+					<img src="{% static "main_app/images/MyWebsite_images/cell_array.JPG" %}"/>	
+				</div>	
+			</div>	
+		</div>
+		<!-- CONTENT -->
+		<div class="row ">
+			<div class="col s12">
+				<div class="container section">
+					<h3 class="center-align">Projects</h3>
+					<div class="center-align flow-text">    	
+						Here are some of the projects I've done thus far in my finite life. 	   	 			
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- Cards Start Here -->
+		<div class="row grey darken-1s">
+			<div class="col s8 offset-s2">
+				<div class="container section">
+					<h3 class="center-align ">Quantum Computing</h3>
+					<div class="card grey darken-3">
+						<div class="card-content white-text">
+							<span class="card-title">Building Unit Tests in Q#</span>
+							<p>This tutorial introduces you to building blocks for unit testing in the Q# Language. Diagnosing errors and understanding the expected outcome of your code is as true in quantum computing as it is in classical computing. In this notebook, you will see how the Q# language and built-in libraries allow you to build/use operations and functions to test your code.</p>
+						</div>
+						<div class="card-action">
+							<a href="https://github.com/ZakHussain/QDK_Unit_Testing/blob/master/Unit%20Testing.ipynb">Github Link</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>	
+
+		<div class="row">
+			<div class="col s8 offset-s2">
+				<div class="container section">
+					<h3 class="center-align">Of Mice and Neurons</h3>
+					<div class="card grey darken-3">
+						<div class="card-content white-text">
+							<span class="card-title">Neuron Morphological Classification</span>
+							<p>Neurons can have spiny or aspiny dendrites. Using a collection of features from the 
+							Allen Institute of Brain Science data set, is it possible to use logistic regression, decision tree, and 
+							random forest models to predict whether a neuron has spiny or aspiny dendrites?</p>
+						</div>
+						<div class="card-action">
+							<a href="{% url 'neuronMorphologyCLF'%}">Go to project</a>
+						</div>
+					</div>
+					<div class="card grey darken-3">
+						<div class="card-content white-text">
+							<span class="card-title">Resight</span>
+							<p>Can mobile applications and facial recognition api aid 
+							individuals with prosopagnosia?</p>
+						</div>
+						<div class="card-action">
+							<a href="{% url 'resight' %}">Go To Project</a>
+						</div>
+					</div>
+					<div class="card grey darken-3">
+						<div class="card-content white-text">
+							<span class="card-title">Cockroach Central Pattern Generation</span>
+							<p>Using EMG signals from cockroach flight, are there electrophysiological patterns 
+							behind cockroach flight-cpg that can be observed using FFT?</p>
+						</div>
+						<div class="card-action">
+							<a href="{% url 'cockroachCPG' %}">GO TO Project</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>		
+
+		<div class="row grey darken-1s">
+			<div class="col s8 offset-s2">
+				<div class="container section">
+					<h3 class="center-align">Natural Language Processing</h3>
+					<div class="card grey darken-3">
+						<div class="card-content white-text ">
+							<span class="card-title">POS Tagging</span>
+							<p>Given a sentence, predict the sequence of Part-of-speech tags using the Viterbi algorithm.</p>
+						</div>
+						<div class="card-action">
+							<a href="https://github.com/ZakHussain/Hidden_Markov_Models/blob/master/Part-of-Speech(POS)%20Tagging%20using%20Hidden%20Markov%20Models%20(HMM).ipynb">Github Link</a>
+						</div>
+					</div>
+					<div class="card grey darken-3">
+						<div class="card-content white-text ">
+							<span class="card-title">Naive Bayes Classifier</span>
+							<p>
+							   What does a classification model truly encompass? Here, I build a Naive Bayes   
+							   Classifier from scratch to predict whether a piece of text came from a Ham or Spam
+						       email.
+						    </p>
+						</div>
+						<div class="card-action">
+							<a href="https://github.com/ZakHussain/Naive_Bayes_Classifier">Github Link</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col s8 offset-s2">
+				<div class="container section">
+					<h3 class="center-align">Computer Vision</h3>					
+					<div class="card grey darken-3">
+						<div class="card-content white-text">
+							<span class="card-title">Keras Convolutional Neural Network</span>
+							<p> 
+							How can we use Convolutional Neural Networks to classify Images in the CIFAR 100 dataset? Here I define a baseline VGG model, define a regularization model that uses dropout regularizatio, and define a data augmentation model that uses RMSprop optimizer.
+						    </p>
+						</div>
+						<div class="card-action">
+							<a href="https://github.com/ZakHussain/CNN_CIFAR_100_Keras">Github Link</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>	
+
+		<div class="row grey darken-1s">
+			<div class="col s8 offset-s2">
+				<div class="container section">
+					<h3 class="center-align">Distributed Systems</h3>					
+					<div class="card grey darken-3">
+						<div class="card-content white-text">
+							<span class="card-title">Multimedia Streaming</span>
+							<p>How can we create a client and server to communicate video content over RTP and RTSP protocols?</p>
+						</div>
+						<div class="card-action">
+							<a href="https://github.com/ZakHussain/Video_Streaming">Github Link</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>		
+			
+		<div class="row ">
+			<div class="col s8 offset-s2">
+				<div class="container section">
+					<h3 class="center-align">Data Science</h3>
+					<div class="card grey darken-3">
+						<div class="card-content white-text">
+							<span class="card-title">Abalone Data Set</span>
+							<p>Logistic regression and multiclass classification using the abalone data set.</p>
+						</div>
+						<div class="card-action">
+							<a href="https://github.com/ZakHussain/Data_Science_Playground/blob/master/Section_1_Abalone/Abalone_pred_models.ipynb">Github Link</a>
+						</div>
+					</div>
+					<div class="card grey darken-3">
+						<div class="card-content white-text">
+							<span class="card-title">Australia Rain Prediction</span>
+							<p>Using sklearn models to predict whether it will rain or not given.</p>
+						</div>
+						<div class="card-action">
+							<a href="https://github.ccs.neu.edu/cs6140machinelearning-fall-2019/zakhussain/blob/master/Midterm/Section_2_Australia_Rain/WorkBook/Australia_Rain_Predictions.ipynb">Github Link</a>
+						</div>
+					</div>
+					<div class="card grey darken-3">
+						<div class="card-content white-text">
+							<span class="card-title">Boston Housing Prices</span>
+							<p>Using Regression models to predict Boston Housing Prices</p>
+						</div>
+						<div class="card-action">
+							<a href="https://github.ccs.neu.edu/cs6140machinelearning-fall-2019/zakhussain/blob/master/Midterm/Section_3_Boston/Workbook/Boston_pred_models.ipynb">Github Link</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>		
+	</body>
+</html>
+

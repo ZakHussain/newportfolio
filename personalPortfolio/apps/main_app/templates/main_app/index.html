@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Welcome | Saud Zakariya Hussain </title>
+		<!--Import Google Icon Font-->
+      	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+		{% load static %}
+		<!--Import css files-->
+		<link rel="stylesheet" type="text/css" href="{% static 'main_app/css/myStyles.css' %}">
+		<link rel="stylesheet" type="text/css" href="{% static 'main_app/css/materialize.css' %}">
+		<!--Import jQuery before materialize.js and myJquery.js-->	
+		<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+		<script type="text/javascript" src="{% static 'main_app/js/myJquery.js' %}"></script>
+		<script type="text/javascript" src="{% static 'main_app/js/materialize.js' %}"></script>
+	</head>
+	<body>
+		<!-- fixed nav bar at the top -->
+		<div class="navbar-fixed">
+			<nav>
+				<div class="nav-wrapper grey darken-4">
+					<a href="{% url 'index' %}" class="brand-logo flow-text minimum-width center">Saud Zakariya Hussain</a>
+					<ul class="right hide-on-med-and-down">
+						<li><a href="{% url 'index' %}">Home</a></li>
+						<li><a href="{% url 'experience' %}">Experience</a></li>
+						<li><a href="{% url 'projects' %}">Projects</a></li>
+						<li><a href="{% url 'blog' %}">Blog</a></li>
+						<li><a href="https://github.com/ZakHussain">GitHub</a></li>
+					</ul>					
+				</div>
+			</nav>	
+		</div>
+		<!-- Page Starting photo -->
+		<div class="wrapper">
+			<div class="row"> 
+				<div class="s12 center-align">
+					<img src="{% static "main_app/images/MyWebsite_images/cell_array.JPG" %}"/>	
+				</div>	
+			</div>	
+		</div>
+		<!-- CONTENT -->
+		<div class="row">
+			<div class="col s12">
+				<div class="container section">
+					<h3 class="center-align">Welcome</h3>
+					<div class="left-align flow-text">	
+					    Hello hello! I'm Zak, a masters student at Northeastern University Seattle. My interest is in artificial intelligence, specifically natural language processing. Overtime, I'm hoping this site become a hub for conversing about this subject! Eventually I'll have the 
+					    Blog tab up above running, but until then, feel free to check out the projects I've worked on via the Projects tab or my github! 
+					</div>
+					<blockquote>*note* I add updates to the projects page the second week of every month. So I hope you keep coming back for more!</blockquote>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col s12 green lighten-5">
+				<div class="container section">
+					<h3 class="center-align">Projects</h3>
+					<div class="left-align flow-text">
+						Thus far, I've had chances to delve into projects largely focused around software and data science. Most of the work here will pertain to 
+						machine learning and natural language processing, as that is my current focus as a student. 
+						<br>
+						<br>						
+						<a href="{% url 'projects'%}"><p class="right-align">Look at my projects -></p></a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col s12">
+				<div class="container section">
+					<h3 class="center-align">Connect</h3>
+					<div class="left-align flow-text">
+						Feel free to email me at hussain.sau@husky.neu.edu
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
+

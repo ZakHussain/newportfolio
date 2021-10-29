@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>ReSight | Saud Zakariya Hussain </title>
+		<!--Import Google Icon Font-->
+      	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+		{% load static %}
+		<!--Import css files-->
+		<link rel="stylesheet" type="text/css" href="{% static 'main_app/css/myStyles.css' %}">
+		<link rel="stylesheet" type="text/css" href="{% static 'main_app/css/materialize.css' %}">
+		<!--Import jQuery before materialize.js and myJquery.js-->	
+		<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+		<script type="text/javascript" src="{% static 'main_app/js/myJquery.js' %}"></script>
+		<script type="text/javascript" src="{% static 'main_app/js/materialize.js' %}"></script>
+	</head>
+	<body>
+		<!-- fixed nav bar at the top -->
+		<div class="navbar-fixed">
+			<nav>
+				<div class="nav-wrapper grey darken-4">
+					<a href="{% url 'index' %}" class="brand-logo flow-text minimum-width center">Saud Zakariya Hussain</a>
+					<ul class="right hide-on-med-and-down">
+						<li><a href="{% url 'index' %}">Home</a></li>
+						<li><a href="{% url 'experience' %}">Experience</a></li>
+						<li><a href="{% url 'projects' %}">Projects</a></li>
+						<li><a href="{% url 'blog' %}">Blog</a></li>
+						<li><a href="https://github.com/ZakHussain">GitHub</a></li>
+					</ul>					
+				</div>
+			</nav>	
+		</div>
+		<!-- Page Starting photo -->
+		<div class="wrapper">
+			<div class="row"> 
+				<div class="s12 center-align">
+					<img src="{% static "main_app/images/MyWebsite_images/cell_array.JPG" %}"/>	
+				</div>	
+			</div>	
+		</div>
+		<!-- CONTENT -->
+		<div class="row">
+			<div class="col s12">
+				<div class="container section">
+					<div class="left-align flow-text">
+						<br>
+						<br>
+						<div class="s12 center-align">
+							<img src="{% static "main_app/images/projects_images/resight_images/image_1.PNG" %}"/>	
+						</div>	
+						<br>
+						<br>
+						In 2017, I worked in a student-led team to design a mobile system aimed towards 
+						those with prosopagnosia--face blindness. This cognitive disorder hinders one's
+						ability to recognize familiar faces, generally following brain damage. This 
+						disorder also exist along a spectrum, where some individuals couldn't recognize 
+						themselves in pictures.
+						<br>
+						<br>
+						<div class="s12 center-align">
+							<img src="{% static "main_app/images/projects_images/resight_images/image_2.PNG" %}"/>	
+						</div>
+						<br>
+						<br>
+						Designing this system involved many facets, between a medical, business, technological, 
+						and ethical standpoint. We needed to understand the following:  "What would the user 
+						interaction look like for a prosopagnostic patient?", "Was there a viable market for
+						this type of system?", "With a non-invasive approach, what technologies could we 
+						incorporate together, and how?" and, "How could we handle the ethics and laws around
+						building a system that collected real-time information of faces? From these questions, 
+						I focused on finding technologies, and integrating them together. 
+						<br>
+						<br>
+						The first step involved finding individuals inflicted with prosopagnosia. My teamates gathered 
+						testimonials and we came to better understand the level at which this disorder could hinder 
+						an individuals life. Some of the testimonials gathered are shown in the following image.
+						<br>
+						<br>
+						<div class="s12 center-align">
+							<img src="{% static "main_app/images/projects_images/resight_images/image_3_testimonials.PNG" %}"/>	
+						</div>
+						<br>
+						<br>
+						In terms of identifying the market for facial recognition application, we believed that this
+						was a viable application to pursue at the time. One of our teamates, Bill, focused on searching for 
+						business models, and existing information about this the face recognition market. Here is some of the
+						information he came across. 
+						<br>
+						<br>
+						<div class="s12 center-align">
+							<img src="{% static "main_app/images/projects_images/resight_images/image_business.PNG" %}"/>	
+						</div>
+						<br>
+						<br>
+						The overview of the system  developed was to integrate real-time visual information
+						with a mobile app. The app would then match to a database of the user's friend group,
+						 and via a small earphone, and notify the user of who was in front of them. The 
+						technology to do this involved using Google glasses, Firebase cloud storage,
+						an Android mobile device, and Microsoft Cognitive API. The challenge for identifying 
+						this collection of tools was honestly based on trial and error, where the resulting 
+						platforms met the condition that they integrated easily together, and the information 
+						flow was smooth without long latency periods. The image below shows a diagram of how the
+						system worked. The only part we did not connect is the facebook API indicated in the diagram.
+						We simply ran out of time, and the application had to many legal and ethical issues for us to 
+						try to get pass without a budget. 
+						<br>
+						<br>
+						<div class="s12 center-align">
+							<img src="{% static "main_app/images/projects_images/resight_images/image_6_technology.PNG" %}"/>	
+						</div>
+						<br>
+						<br>
+						For myself, the biggest challenge came with time management. Learning how to use these tools individually and integrating them together took me another month of development. Of course my tactic for managing my time was simply to allocate a set amount of hours to learning and playing around with environments vs actually trying to integrate the platforms together. My resulting contribution was developing the Mobile application and integrating it with the Firebase cloud storage as well as Microsoft Cognitive Services Facial Recognition API. 
+						<br>
+						<br>
+						I was overall proud of what we were able to do given the limited resoureces and time we invested. In
+						the future, I'm hoping to integrate different systems together, but specifically in the speech, 
+						natural language, and vr domains. 
+						<br>
+						<br> 
+						P.S. I no longer have the code on my github for the Resight prototype developed; however, I'm pretty sure
+						my team lead still has it. If you'd like to see it, just send me a message and I'll see if I can get a hold of him. Either that, or I can point you to the Microsoft API I used for integrating in the facial recognition. 
+						<br>
+						<br>
+						contact: hussain.sau@husky.neu.edu
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
+

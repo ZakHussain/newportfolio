@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Cockroach CPG | Saud Zakariya Hussain </title>
+		<!--Import Google Icon Font-->
+      	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+		{% load static %}
+		<!--Import css files-->
+		<link rel="stylesheet" type="text/css" href="{% static 'main_app/css/myStyles.css' %}">
+		<link rel="stylesheet" type="text/css" href="{% static 'main_app/css/materialize.css' %}">
+		<!--Import jQuery before materialize.js and myJquery.js-->	
+		<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+		<script type="text/javascript" src="{% static 'main_app/js/myJquery.js' %}"></script>
+		<script type="text/javascript" src="{% static 'main_app/js/materialize.js' %}"></script>
+	</head>
+	<body>
+		<!-- fixed nav bar at the top -->
+		<div class="navbar-fixed">
+			<nav>
+				<div class="nav-wrapper grey darken-4">
+					<a href="{% url 'index' %}" class="brand-logo flow-text minimum-width center">Saud Zakariya Hussain</a>
+					<ul class="right hide-on-med-and-down">
+						<li><a href="{% url 'index' %}">Home</a></li>
+						<li><a href="{% url 'experience' %}">Experience</a></li>
+						<li><a href="{% url 'projects' %}">Projects</a></li>
+						<li><a href="{% url 'blog' %}">Blog</a></li>
+						<li><a href="https://github.com/ZakHussain">GitHub</a></li>
+					</ul>					
+				</div>
+			</nav>	
+		</div>
+		<!-- Page Starting photo -->
+		<div class="wrapper">
+			<div class="row"> 
+				<div class="s12 center-align">
+					<img src="{% static "main_app/images/MyWebsite_images/cell_array.JPG" %}"/>	
+				</div>	
+			</div>	
+		</div>
+		<!-- CONTENT -->
+		<div class="row">
+			<div class="col s12">
+				<div class="container section">
+					<h3 class="center-align">Investigation of Cockroach Flight-CPG Behavior Across the Axes</h3>
+					<div class="left-align flow-text">	
+					    <br>
+					   	Saud Zakariya Hussain | PBIO - Computational Neuroscience | 02/15/2018
+						<br>				
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col s12 indigo lighten-5">
+				<div class="container section">
+					<h3 class="center-align">Prezi Presentation</h3>
+					<div class="left-align flow-text">
+					For This project, I aimed to use a pearson correlation & fourier transformation to analyze EMG data. The goal of using these statistical methods is to investigate the CPG behavior across the axes of a cockroach. 
+					</div>
+					<br>
+					<br>
+					<iframe id="iframe_container" frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen="" allow="autoplay; fullscreen" width="100%" height="400" src="https://prezi.com/embed/hxcxbxyhkmlz/?bgcolor=ffffff&amp;lock_to_path=0&amp;autoplay=0&amp;autohide_ctrls=0&amp;landing_data=bHVZZmNaNDBIWnNjdEVENDRhZDFNZGNIUE43MHdLNWpsdFJLb2ZHanI0bEpkT255Mml0ZnA3QXNnakp4Rmo5eXRBPT0&amp;landing_sign=13eYUHW0qzDchPXRGWGWtIuBQQSIR42vt55bDwevKAM"></iframe>
+					<br>
+					<br>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col s12">
+				<div class="container section">
+					<h3 class="center-align">Background</h3>
+					<div class="left-align flow-text">
+						Central pattern generators (CPGs) are networks of functionally distinguishable neurons that generate and regulate activity in the absence of sensory input. CPG dynamics are largely dependent on events at the intracellular, synaptic, and network level. In cockroaches, if we were to look at the neural circuit involved in the CPG, we would notice that these neurons are interconnect via both excitatory and inhibitory neurons. 
+						<br>
+						<br>
+						A basic explanation of the methodology of this experiment involved recording EMG signals from the forewings and hindwings of the cockroach. The CPG activity was invoked through using artificially generated wind current. We recorded the normal activity of the cockroach suspended in the air and following we manipulated its orientation by adjusting pitch and roll. 
+						<br>
+						<br>						
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col s12 green lighten-5">
+				<div class="container section">
+					<h3 class="center-align">Statistical Methods:</h3>
+					<div class="left-align flow-text">
+						With the collected EMG data, using a pearson correlation seemed reasonable as it would test the association between the activity of the wing beat frequencies. In other words, when a cockroach uses one wing, is that a factor in determining another wing will be used? For the three orientations, we tested the relationship between the wings of the rostral contra-ipsilateral axis, caudal contra-ipsilateral axis, and the ipsilateral right axis. The following is the a basic Matlab
+						function I used to generat the Pearson for comparing anterior, posterior, ipsilateral anterior, 
+						and ipsilaterla posterior wings.  
+						<br>
+						<br>
+						<b>% the pearson function takes in data from two</b>
+						<br>
+						<b>% sets of data, calculates the covariance between </b>
+						<br>
+						<b>% the sets, and finally spits out the calculated</b>
+						<br>
+						<b>% pearson correlation value</b>
+						<br>
+						function [ p ] = pearson_f( x, y )
+						<br>
+						&nbsp; &nbsp; C = cov(x, y);
+						<br>
+						&nbsp; &nbsp; bp = C(2)/(std(x)*std(y));
+						<br>
+						end
+						<br>
+						<br>
+						Following this we utilized the simplicity of transforming the data from the time domain to the frequency domain via Building a simple function in Matlab that takes in a column of data containing the EMG signals and spits out the plot of power(DB) vs. frequency (Hz). Here is the code for that.
+						<br>
+						<br>
+						<b>% The plotfreq function takes in the column of data</b>
+						<br>
+						<b>% that contained the voltage values in the time domain.</b>
+						<br>
+						<b>% this will then be used to contruct the frequency domain.</b>
+						<br>
+						function [ output_args ] = plotfreq(x)
+						<br>
+						 &nbsp; &nbsp; [s, f, t, p] = spectrogram(double(x), 39800, 0, 0:1:100, 4000, 'yaxis')
+						 <br>
+						 &nbsp; &nbsp; plot(f, p)
+						 <br>
+						 &nbsp; &nbsp; xlabel('freq (hz)')
+						 <br>
+						 &nbsp; &nbsp; ylabel('power (dB)')
+						 <br>
+						end
+						<br>
+						<br>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col s12">
+				<div class="container section">
+					<h3 class="center-align">Conclusion</h3>
+					<div class="left-align flow-text">
+						The Fourier Transform of the data from the time to frequency domain provided valuable insight into seeing how the wing beat frequencies changed in the cockroach flight CPG in order to accommodate for the different orientations of suspended flight. As for future uses of the statistical procedures used, I believe that FFT has vast application across numerous neuro-specific topics, such as recording fish EODs, or even looking at human/primate EMG, stimulus-induced activity. 
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
+
